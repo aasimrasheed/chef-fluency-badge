@@ -5,8 +5,15 @@
 # Copyright:: 2017, The Authors, All Rights Reserved.
 #
 #
+
+if node['platform_family'] == "rhel"
+	packagenm = "httpd"
+elsif node['platform_family'] == "debian"
+	packagenm = "apache2"
+end
+
 package 'apache2' do
-	package_name 'httpd'
+	package_name packagenm
 	action :install
 end
 
